@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- The Basics -->
+	<groupId>org.rasea</groupId>
+	<artifactId>rasea-parent</artifactId>
+	<version>1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>Rasea Parent</name>
+	<url>http://rasea.org</url>
+	<inceptionYear>2008</inceptionYear>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.6.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<goals>site site:deploy</goals>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.0.2</version>
+					<configuration>
+						<target>${java.version}</target>
+						<source>${java.version}</source>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.2.1</version>
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<configuration>
+								<finalName>${project.artifactId}-${project.version}</finalName>
+								<outputDirectory>${project.build.directory}/assembly
+							</outputDirectory>
+								<descriptors>
+									<descriptor>${basedir}/src/main/assembly/src.xml</descriptor>
+									<descriptor>${basedir}/src/main/assembly/bin.xml</descriptor>
+								</descriptors>
+							</configuration>
+							<goals>
+								<goal>assembly</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>wagon-maven-plugin</artifactId>
+					<version>1.0-beta-3</version>
+					<configuration>
+						<serverId>sourceforge.rasea.org</serverId>
+						<url>${upload.url}</url>
+						<fromDir>${project.build.directory}/assembly</fromDir>
+						<toDir>${project.artifactId}/${project.version}</toDir>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>1.0-beta-7</version>
+			</extension>
+		</extensions>
+	</build>
+
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License version 3.0 (GPLv3)</name>
+			<url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+			<distribution>manual</distribution>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>Rasea</name>
+		<url>http://www.rasea.org</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Abraão Isvi</name>
+			<email>abraao.isvi@gmail.com
+			</email>
+			<url>https://sourceforge.net/users/abraaoisvi
+			</url>
+			<roles>
+				<role>Arquiteto</role>
+				<role>Desenvolvedor</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Cleverson Sacramento</name>
+			<email>cleverson.sacramento@gmail.com
+			</email>
+			<url>http://cleversonsacramento.wordpress.com
+			</url>
+			<roles>
+				<role>Líder</role>
+				<role>Arquiteto</role>
+				<role>Desenvolvedor</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Leandro França</name>
+			<email>leandro.franca@gmail.com
+			</email>
+			<url>https://sourceforge.net/users/francaleandro
+			</url>
+			<roles>
+				<role>Projetista de Interface</role>
+				<role>Desenvolvedor</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Robson Ataíde</name>
+			<email>robson.ataide@gmail.com
+			</email>
+			<url>http://robsonataide.wordpress.com
+			</url>
+			<roles>
+				<role>Projetista Web</role>
+				<role>Projetista de Interface</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Wilson Guimarães</name>
+			<email>wegneto@gmail.com
+			</email>
+			<url>http://twitter.com/wegneto
+			</url>
+			<roles>
+				<role>Arquiteto</role>
+				<role>Desenvolvedor</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git@github.com:rasea/parent.git</connection>
+		<url>scm:git:git@github.com:rasea/parent.git</url>
+		<developerConnection>scm:git:git@github.com:rasea/parent.git</developerConnection>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>sourceforge.rasea.org</id>
+			<url>${repo.url}</url>
+			<uniqueVersion>false</uniqueVersion>
+		</repository>
+		<snapshotRepository>
+			<id>sourceforge.rasea.org</id>
+			<url>${repo.url}</url>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>nexus.jboss.org</id>
+			<name>JBoss Maven Repository</name>
+			<url>http://repository.jboss.org/nexus/content/repositories/releases
+			</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>prime-repo</id>
+			<name>Prime Technology Maven Repository</name>
+			<url>http://repository.prime.com.tr/</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2/</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>repo.rasea.org</id>
+			<name>Rasea Maven Repository</name>
+			<url>http://repo.rasea.org/maven2/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
+
+	<properties>
+		<host.url>sftp://web.sourceforge.net</host.url>
+		<upload.url>${host.url}/home/pfs/project/r/ra/rasea</upload.url>
+		<htdocs.url>${host.url}/home/project-web/rasea/htdocs</htdocs.url>
+		<!-- <upload.url>scp://shell.sourceforge.net/home/pfs/project/r/ra/rasea</upload.url> -->
+		<!-- <htdocs.url>scp://shell.sourceforge.net/home/project-web/rasea/htdocs</htdocs.url> -->
+		<repo.url>${htdocs.url}/maven2</repo.url>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<java.version>1.6</java.version>
+	</properties>
+</project>
