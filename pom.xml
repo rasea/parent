@@ -58,6 +58,11 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.3</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-assembly-plugin</artifactId>
 					<version>2.2.1</version>
 					<executions>
@@ -116,67 +121,8 @@
 
 	<organization>
 		<name>Rasea</name>
-		<url>http://www.rasea.org</url>
+		<url>http://rasea.org</url>
 	</organization>
-
-	<developers>
-		<developer>
-			<name>Abraão Isvi</name>
-			<email>abraao.isvi@gmail.com
-			</email>
-			<url>https://sourceforge.net/users/abraaoisvi
-			</url>
-			<roles>
-				<role>Arquiteto</role>
-				<role>Desenvolvedor</role>
-			</roles>
-		</developer>
-		<developer>
-			<name>Cleverson Sacramento</name>
-			<email>cleverson.sacramento@gmail.com
-			</email>
-			<url>http://cleversonsacramento.wordpress.com
-			</url>
-			<roles>
-				<role>Líder</role>
-				<role>Arquiteto</role>
-				<role>Desenvolvedor</role>
-			</roles>
-		</developer>
-		<developer>
-			<name>Leandro França</name>
-			<email>leandro.franca@gmail.com
-			</email>
-			<url>https://sourceforge.net/users/francaleandro
-			</url>
-			<roles>
-				<role>Projetista de Interface</role>
-				<role>Desenvolvedor</role>
-			</roles>
-		</developer>
-		<developer>
-			<name>Robson Ataíde</name>
-			<email>robson.ataide@gmail.com
-			</email>
-			<url>http://robsonataide.wordpress.com
-			</url>
-			<roles>
-				<role>Projetista Web</role>
-				<role>Projetista de Interface</role>
-			</roles>
-		</developer>
-		<developer>
-			<name>Wilson Guimarães</name>
-			<email>wegneto@gmail.com
-			</email>
-			<url>http://twitter.com/wegneto
-			</url>
-			<roles>
-				<role>Arquiteto</role>
-				<role>Desenvolvedor</role>
-			</roles>
-		</developer>
-	</developers>
 
 	<scm>
 		<connection>scm:git:git@github.com:rasea/parent.git</connection>
