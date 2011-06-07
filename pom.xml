@@ -23,7 +23,6 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- The Basics -->
 	<groupId>org.rasea</groupId>
 	<artifactId>rasea-parent</artifactId>
 	<version>1-SNAPSHOT</version>
